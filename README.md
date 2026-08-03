@@ -62,3 +62,4 @@ Set Vercel to use:
 - Add new page routes under `src/routes/` using `createFileRoute`.
 - Adjust styling in `src/styles.css` and Tailwind utility classes as needed.
 # Neptunx
+# Neptunx
