@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import type * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -22,25 +22,32 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-import heroInterior from "@/assets/hero-interior.jpg";
+
 import serviceFridge from "@/assets/service-fridge.jpg";
 import serviceInterior from "@/assets/service-interior.jpg";
 import productAc from "@/assets/product-ac.jpg";
 import productFridge from "@/assets/product-fridge.jpg";
 import productWasher from "@/assets/product-washer.jpg";
 import productMicrowave from "@/assets/product-microwave.jpg";
-import neptunxLogo from "@/assets/neptunx-logo.png";
-import serviceHvacReal from "@/assets/service-hvac-real.jpg";
+import logoAsset from "@/assets/neptunx-logo.png";
+import serviceHvacAsset from "@/assets/split-ac-install.jpg";
+import standingAcAsset from "@/assets/standing-ac-install.jpg";
+import livingRoomTvAsset from "@/assets/living-room-tv.jpg";
 
-const LOGO_URL = neptunxLogo;
-const serviceHvac = serviceHvacReal;
+import { Partners } from "../components/AboutTeam";
+
+const LOGO_URL = logoAsset;
+const serviceHvac = serviceHvacAsset;
+const standingAc = standingAcAsset;
+const livingRoomTv = livingRoomTvAsset;
+
 
 export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const PHONE_DISPLAY = "+234 902 081 1739";
-const PHONE_E164 = "2349020811739";
+const PHONE_DISPLAY = "+234 814 902 4653";
+const PHONE_E164 = "2348149024653";
 const WHATSAPP = `https://wa.me/${PHONE_E164}`;
 const TEL = `tel:+${PHONE_E164}`;
 
@@ -163,7 +170,7 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
 }
 
 /* ---------------- Nav ---------------- */
-function Nav() {
+export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -174,11 +181,14 @@ function Nav() {
   }, []);
 
   const links = [
-    { href: "#services", label: "Services" },
-    { href: "#shop", label: "Shop" },
-    { href: "#why", label: "Why Neptunx" },
-    { href: "#contact", label: "Contact" },
+    { href: "/", label: "Home" },
+    { href: "/#services", label: "Services" },
+    { href: "/#shop", label: "Shop" },
+    { href: "/about", label: "About" },
+    { href: "/#contact", label: "Contact" },
   ];
+
+
 
   return (
     <header
@@ -192,7 +202,7 @@ function Nav() {
             scrolled ? "glass shadow-soft" : "bg-transparent"
           }`}
         >
-          <a href="#" className="flex items-center gap-2.5 group min-w-0">
+          <Link to="/" className="flex items-center gap-2.5 group min-w-0">
             <Logo className="h-10 w-10 sm:h-11 sm:w-11" />
             <div className="leading-tight min-w-0">
               <div className="font-semibold tracking-tight text-navy-deep truncate">Neptunx</div>
@@ -200,20 +210,31 @@ function Nav() {
                 Home Interiors
               </div>
             </div>
-          </a>
+          </Link>
 
 
           <nav className="hidden md:flex items-center gap-1">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="px-3 py-2 text-sm text-navy-soft hover:text-navy-deep rounded-lg hover:bg-mist transition"
-              >
-                {l.label}
-              </a>
-            ))}
+            {links.map((l) =>
+              l.href === "/about" || l.href === "/" ? (
+                <Link
+                  key={l.href}
+                  to={l.href}
+                  className="px-3 py-2 text-sm text-navy-soft hover:text-navy-deep rounded-lg hover:bg-mist transition"
+                >
+                  {l.label}
+                </Link>
+              ) : (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  className="px-3 py-2 text-sm text-navy-soft hover:text-navy-deep rounded-lg hover:bg-mist transition"
+                >
+                  {l.label}
+                </a>
+              ),
+            )}
           </nav>
+
 
           <div className="hidden md:flex items-center gap-2">
             <a
@@ -244,16 +265,28 @@ function Nav() {
 
         {open && (
           <div className="md:hidden mt-2 glass rounded-2xl p-3 shadow-soft animate-rise">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="block px-4 py-3 rounded-xl text-navy-deep hover:bg-mist"
-              >
-                {l.label}
-              </a>
-            ))}
+            {links.map((l) =>
+              l.href === "/about" || l.href === "/" ? (
+                <Link
+                  key={l.href}
+                  to={l.href}
+                  onClick={() => setOpen(false)}
+                  className="block px-4 py-3 rounded-xl text-navy-deep hover:bg-mist"
+                >
+                  {l.label}
+                </Link>
+              ) : (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="block px-4 py-3 rounded-xl text-navy-deep hover:bg-mist"
+                >
+                  {l.label}
+                </a>
+              ),
+            )}
+
             <button
               type="button"
               onClick={() => {
@@ -287,7 +320,7 @@ function Hero() {
           <div className="animate-rise">
             <div className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-xs text-navy-soft shadow-soft">
               <span className="h-1.5 w-1.5 rounded-full bg-ember animate-pulse" />
-              Trusted by 2,400+ Lagos homes
+              Trusted by 1,370+ Lagos homes
             </div>
 
             <h1 className="mt-6 font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.02] text-navy-deep">
@@ -300,7 +333,7 @@ function Hero() {
             </h1>
 
             <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
-              HVAC, refrigeration, appliances and interior solutions — engineered
+              HVAC, refrigeration, appliances and interior solutions, engineered
               for modern Lagos living. Certified technicians, curated products,
               and a service standard you can feel.
             </p>
@@ -328,9 +361,9 @@ function Hero() {
 
             <dl className="mt-12 grid grid-cols-3 gap-4 sm:gap-8 max-w-lg">
               {[
-                { k: <><Counter to={2400} suffix="+" /></>, v: "Homes served" },
-                { k: <><Counter to={12} suffix="+" /></>, v: "Years in Lagos" },
-                { k: <><Counter to={98} suffix="%" /></>, v: "Repeat clients" },
+                { k: <><Counter to={1370} suffix="+" /></>, v: "Homes served" },
+                { k: <><Counter to={7} suffix="+" /></>, v: "Years in Lagos" },
+                { k: <><Counter to={74} suffix="%" /></>, v: "Repeat clients" },
               ].map((s, i) => (
                 <div key={i}>
                   <dt className="font-display text-3xl sm:text-4xl text-navy-deep">
@@ -348,8 +381,8 @@ function Hero() {
           <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-elegant">
               <img
-                src={heroInterior}
-                alt="Modern luxury Lagos apartment interior at golden hour"
+                src={livingRoomTv}
+                alt="Neptunx installed wall-mounted TV and lounge fit-out in a modern Lagos living room"
                 width={1600}
                 height={1200}
                 className="w-full h-[420px] sm:h-[560px] object-cover"
@@ -360,13 +393,14 @@ function Hero() {
               <div className="absolute left-4 sm:left-6 bottom-4 sm:bottom-6 glass rounded-2xl p-3 sm:p-4 shadow-soft animate-float max-w-[240px]">
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 rounded-xl bg-ember-gradient grid place-items-center shrink-0">
-                    <Wind className="h-5 w-5 text-primary-foreground" />
+                    <Sofa className="h-5 w-5 text-primary-foreground" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs text-muted-foreground">Just installed</div>
+                    <div className="text-xs text-muted-foreground">Just completed</div>
                     <div className="text-sm font-semibold text-navy-deep truncate">
-                      Split AC · Ikoyi
+                      Living room fitout · Ikoyi
                     </div>
+
                   </div>
                 </div>
               </div>
@@ -418,6 +452,7 @@ const services: {
   desc: string;
   image: string;
   tag: string;
+  pos?: string;
 }[] = [
   {
     icon: Wind,
@@ -443,8 +478,9 @@ const services: {
   {
     icon: Wrench,
     title: "Home Maintenance",
-    desc: "Annual care plans and on-demand technicians — plumbing, electrical and beyond.",
-    image: heroInterior,
+    desc: "Annual care plans and on-demand technicians for plumbing, electrical and beyond.",
+    image: standingAc,
+    pos: "object-[52%_30%] scale-[1.35] group-hover:scale-[1.42]",
     tag: "Care",
   },
 ];
@@ -460,10 +496,10 @@ function Services() {
               Services
             </div>
             <h2 className="mt-3 font-display text-4xl sm:text-5xl text-navy-deep leading-[1.05]">
-              Every discipline your home needs — under one roof.
+              Every discipline your home needs, under one roof.
             </h2>
             <p className="mt-4 text-muted-foreground">
-              A single, reliable partner for cooling, appliances and interiors —
+              A single, reliable partner for cooling, appliances and interiors,
               delivered with a craft-level standard from first quote to final walk-through.
             </p>
           </div>
@@ -478,7 +514,7 @@ function Services() {
                     src={s.image}
                     alt={s.title}
                     loading="lazy"
-                    className="h-full w-full object-cover scale-105 group-hover:scale-110 transition duration-[1200ms]"
+                    className={`h-full w-full object-cover transition duration-[1200ms] ${s.pos ?? "object-center scale-105 group-hover:scale-110"}`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/70 via-navy-deep/10 to-transparent" />
                   <div className="absolute top-3 left-3 glass rounded-full px-2.5 py-1 text-[10px] uppercase tracking-widest text-navy-deep">
@@ -575,7 +611,7 @@ function Shop() {
                 Appliances, chosen with intent.
               </h2>
               <p className="mt-4 text-muted-foreground">
-                A tight collection of the most quietly excellent products — installed,
+                A tight collection of the most quietly excellent products, installed,
                 configured, and supported by our team.
               </p>
             </div>
@@ -668,7 +704,7 @@ function WhyUs() {
                 <span className="italic text-ember-soft">properly.</span>
               </h2>
               <p className="mt-5 text-white/70 max-w-lg">
-                We built Neptunx for homeowners who care about how their space works —
+                We built Neptunx for homeowners who care about how their space works,
                 not just how it looks. Every technician, every product, every callback
                 is held to a single standard.
               </p>
@@ -831,7 +867,7 @@ function CTA() {
                   { k: "1hr", v: "Avg. response" },
                   { k: "7d", v: "Open all week" },
                   { k: "24/7", v: "Emergency line" },
-                  { k: "12+", v: "Years experience" },
+                  { k: "7+", v: "Years experience" },
                 ].map((s) => (
                   <div
                     key={s.v}
@@ -853,7 +889,7 @@ function CTA() {
 }
 
 /* ---------------- Footer ---------------- */
-function Footer() {
+export function Footer() {
   return (
     <footer className="border-t border-border/60 py-12 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -873,11 +909,18 @@ function Footer() {
               Lagos' premium partner for HVAC, refrigeration, appliances and
               interior solutions.
             </p>
+            <div className="mt-5 space-y-2 text-sm text-muted-foreground">
+              <div>C7, 96 Nicon Town, Lekki, Lagos</div>
+              <div>Block C, 104 Complex, Ogijo Bus Stop, Ikorodu</div>
+              <a href={TEL} className="inline-block font-medium text-navy-deep hover:text-ember transition">
+                {PHONE_DISPLAY}
+              </a>
+            </div>
           </div>
           {[
             { h: "Services", l: ["HVAC", "Refrigeration", "Interiors", "Maintenance"] },
             { h: "Shop", l: ["Air conditioners", "Refrigerators", "Washers", "Microwaves"] },
-            { h: "Company", l: ["About", "Contact", "Careers", "Warranty"] },
+            { h: "Company", l: ["About", "Team", "Partners", "Contact"] },
           ].map((c) => (
             <div key={c.h}>
               <div className="text-xs uppercase tracking-[0.2em] text-navy-deep font-medium">
@@ -905,7 +948,7 @@ function Footer() {
 }
 
 /* ---------------- Mobile floating actions ---------------- */
-function MobileActions() {
+export function MobileActions() {
   return (
     <div className="lg:hidden fixed bottom-4 inset-x-4 z-40 flex gap-2">
       <button
@@ -948,11 +991,11 @@ type BookingForm = {
 };
 
 const TIME_SLOTS = [
-  "08:00 – 10:00",
-  "10:00 – 12:00",
-  "12:00 – 14:00",
-  "14:00 – 16:00",
-  "16:00 – 18:00",
+  "08:00 to 10:00",
+  "10:00 to 12:00",
+  "12:00 to 14:00",
+  "14:00 to 16:00",
+  "16:00 to 18:00",
 ];
 
 function todayISO() {
@@ -962,7 +1005,7 @@ function todayISO() {
   return `${d.getFullYear()}-${m}-${day}`;
 }
 
-function BookingModal() {
+export function BookingModal() {
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState<BookingForm>({
@@ -1253,8 +1296,11 @@ function Landing() {
       <TrustStrip />
       <Services />
       <Shop />
+      <Partners />
       <WhyUs />
+
       <Testimonials />
+
       <CTA />
       <Footer />
       <MobileActions />
