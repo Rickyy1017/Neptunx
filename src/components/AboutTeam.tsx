@@ -67,7 +67,7 @@ export function About() {
               <div className="text-xs uppercase tracking-[0.22em] text-ember font-medium">
                 About Neptunx
               </div>
-              <h2 className="mt-3 font-display text-3xl sm:text-4xl md:text-5xl leading-[1.06] text-navy-deep">
+              <h2 className="mt-3 font-display text-3xl sm:text-4xl md:text-5xl leading-[1.06] text-ink">
                 A trusted home &amp; property solutions company.
               </h2>
               <p className="mt-5 text-muted-foreground leading-relaxed">
@@ -89,8 +89,8 @@ export function About() {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="rounded-3xl bg-white/70 backdrop-blur p-6 sm:p-8 shadow-soft border border-border/60">
-              <div className="text-xs uppercase tracking-[0.2em] text-navy-deep font-medium">
+            <div className="rounded-3xl bg-card/70 backdrop-blur p-6 sm:p-8 shadow-soft border border-border/60">
+              <div className="text-xs uppercase tracking-[0.2em] text-ink font-medium">
                 Our offices
               </div>
               <ul className="mt-5 space-y-5">
@@ -102,7 +102,7 @@ export function About() {
                     <span className="mt-0.5 h-9 w-9 shrink-0 rounded-xl bg-ember-gradient grid place-items-center shadow-ember">
                       <MapPin className="h-4 w-4 text-primary-foreground" />
                     </span>
-                    <span className="text-sm text-navy-soft leading-relaxed">{a}</span>
+                    <span className="text-sm text-ink-soft leading-relaxed">{a}</span>
                   </li>
                 ))}
                 <li className="flex gap-3">
@@ -111,7 +111,7 @@ export function About() {
                   </span>
                   <a
                     href="tel:+2348149024653"
-                    className="text-sm font-medium text-navy-deep hover:text-ember transition"
+                    className="text-sm font-medium text-ink hover:text-ember transition"
                   >
                     +234 814 902 4653
                   </a>
@@ -168,7 +168,7 @@ export function Different() {
             <div className="text-xs uppercase tracking-[0.22em] text-ember font-medium">
               What makes us different
             </div>
-            <h2 className="mt-3 font-display text-3xl sm:text-4xl md:text-5xl leading-[1.06] text-navy-deep">
+            <h2 className="mt-3 font-display text-3xl sm:text-4xl md:text-5xl leading-[1.06] text-ink">
               Six standards we never negotiate.
             </h2>
           </div>
@@ -179,9 +179,9 @@ export function Different() {
             <Reveal key={d.title} delay={i * 70}>
               <div className="group h-full rounded-3xl border border-border/70 bg-card p-6 shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-300">
                 <div className="h-11 w-11 rounded-2xl bg-mist grid place-items-center group-hover:bg-ember-gradient transition-colors">
-                  <d.icon className="h-5 w-5 text-navy-deep group-hover:text-primary-foreground transition-colors" />
+                  <d.icon className="h-5 w-5 text-ink group-hover:text-primary-foreground transition-colors" />
                 </div>
-                <h3 className="mt-5 font-semibold text-navy-deep">{d.title}</h3>
+                <h3 className="mt-5 font-semibold text-ink">{d.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{d.desc}</p>
               </div>
             </Reveal>
@@ -291,14 +291,14 @@ export function Partners() {
       id="partners"
       className="py-16 sm:py-20 bg-background border-y border-border/60 relative overflow-hidden"
     >
-      <div className="absolute left-1/2 -translate-x-1/2 top-0 h-64 w-[640px] max-w-full rounded-full bg-ember/5 blur-3xl" />
+      <div className="absolute left-1/2 -translate-x-1/2 top-0 h-64 w-[640px] max-w-full rounded-full bg-ember/5 dark:bg-ember/[0.02] blur-3xl" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 relative">
         <Reveal>
           <div className="text-center">
             <div className="text-xs uppercase tracking-[0.22em] text-ember font-medium">
               Official partners
             </div>
-            <h2 className="mt-3 font-display text-2xl sm:text-3xl md:text-4xl text-navy-deep">
+            <h2 className="mt-3 font-display text-2xl sm:text-3xl md:text-4xl text-ink">
               We partner with the brands we trust.
             </h2>
           </div>
@@ -308,15 +308,15 @@ export function Partners() {
           {partners.map((p, i) => (
             <Reveal key={p.name} delay={i * 90}>
               <div
-                className="group relative h-28 sm:h-32 rounded-2xl border border-border/70 bg-card grid place-items-center px-6 shadow-soft hover:shadow-elegant animate-logo-lift hover:[animation-play-state:paused] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden"
+                className="group relative h-28 sm:h-32 rounded-2xl border border-border/70 bg-card grid place-items-center px-6 shadow-soft dark:shadow-none hover:shadow-elegant dark:hover:shadow-[0_20px_50px_-20px_oklch(0.6_0.16_250/0.15)] animate-logo-lift hover:[animation-play-state:paused] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden"
                 style={{ animationDelay: `${i * 900}ms` }}
               >
                 <span
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ember/10 to-transparent opacity-0 animate-fade-pulse group-hover:opacity-100"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ember/10 to-transparent opacity-0 animate-fade-pulse group-hover:opacity-100 dark:from-ember/[0.03] dark:group-hover:opacity-60"
                   style={{ animationDelay: `${i * 900}ms` }}
                 />
                 <span
-                  className="pointer-events-none absolute -inset-x-10 -top-10 h-24 rotate-12 bg-white/40 blur-xl opacity-0 animate-logo-sheen"
+                  className="pointer-events-none absolute -inset-x-10 -top-10 h-24 rotate-12 bg-white/40 blur-xl opacity-0 animate-logo-sheen dark:hidden"
                   style={{ animationDelay: `${i * 900}ms` }}
                 />
                 <img

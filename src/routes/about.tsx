@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Phone } from "lucide-react";
 
-import { About, Different, Team, Partners } from "../components/AboutTeam";
+import { About, Different, Team, Partners } from "@/components/AboutTeam";
 import { Nav, Footer, MobileActions, BookingModal } from "./index";
 
 export const Route = createFileRoute("/about")({

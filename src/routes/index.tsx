@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+
+import { Link, createFileRoute } from "@tanstack/react-router";
 import type * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -24,7 +25,6 @@ import {
 
 
 import serviceFridge from "@/assets/service-fridge.jpg";
-import serviceInterior from "@/assets/service-interior.jpg";
 import productAc from "@/assets/product-ac.jpg";
 import productFridge from "@/assets/product-fridge.jpg";
 import productWasher from "@/assets/product-washer.jpg";
@@ -32,14 +32,28 @@ import productMicrowave from "@/assets/product-microwave.jpg";
 import logoAsset from "@/assets/neptunx-logo.png";
 import serviceHvacAsset from "@/assets/split-ac-install.jpg";
 import standingAcAsset from "@/assets/standing-ac-install.jpg";
-import livingRoomTvAsset from "@/assets/living-room-tv.jpg";
+import loungeIkoyiAsset from "@/assets/lounge-ikoyi.jpg";
+import interiorOpenPlanAsset from "@/assets/interior-open-plan.jpg";
+import interiorLoungeOrangeAsset from "@/assets/interior-lounge-orange.jpg";
+import tvWallLoungeAsset from "@/assets/tv-wall-lounge.jpg";
+import ceilingLoungeAsset from "@/assets/ceiling-lounge.jpg";
 
-import { Partners } from "../components/AboutTeam";
+
+import { Partners } from "@/components/AboutTeam";
+import { ThemeToggle } from "@/components/ThemeToggle";
+
 
 const LOGO_URL = logoAsset;
 const serviceHvac = serviceHvacAsset;
 const standingAc = standingAcAsset;
-const livingRoomTv = livingRoomTvAsset;
+const loungeIkoyi = loungeIkoyiAsset;
+const serviceInterior = interiorOpenPlanAsset;
+const gallery = [
+  { src: interiorLoungeOrangeAsset, title: "Lounge refit", place: "Lekki" },
+  { src: tvWallLoungeAsset, title: "TV wall & joinery", place: "Victoria Island" },
+  { src: ceilingLoungeAsset, title: "Ceiling & lighting design", place: "Ikeja GRA" },
+];
+
 
 
 export const Route = createFileRoute("/")({
@@ -205,7 +219,7 @@ export function Nav() {
           <Link to="/" className="flex items-center gap-2.5 group min-w-0">
             <Logo className="h-10 w-10 sm:h-11 sm:w-11" />
             <div className="leading-tight min-w-0">
-              <div className="font-semibold tracking-tight text-navy-deep truncate">Neptunx</div>
+              <div className="font-semibold tracking-tight text-ink truncate">Neptunx</div>
               <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground truncate">
                 Home Interiors
               </div>
@@ -219,7 +233,7 @@ export function Nav() {
                 <Link
                   key={l.href}
                   to={l.href}
-                  className="px-3 py-2 text-sm text-navy-soft hover:text-navy-deep rounded-lg hover:bg-mist transition"
+                  className="px-3 py-2 text-sm text-ink-soft hover:text-ink rounded-lg hover:bg-mist transition"
                 >
                   {l.label}
                 </Link>
@@ -227,7 +241,7 @@ export function Nav() {
                 <a
                   key={l.href}
                   href={l.href}
-                  className="px-3 py-2 text-sm text-navy-soft hover:text-navy-deep rounded-lg hover:bg-mist transition"
+                  className="px-3 py-2 text-sm text-ink-soft hover:text-ink rounded-lg hover:bg-mist transition"
                 >
                   {l.label}
                 </a>
@@ -237,9 +251,11 @@ export function Nav() {
 
 
           <div className="hidden md:flex items-center gap-2">
+            <ThemeToggle />
             <a
+
               href={TEL}
-              className="inline-flex items-center gap-2 px-3 py-2 text-sm text-navy-deep hover:text-ember transition"
+              className="inline-flex items-center gap-2 px-3 py-2 text-sm text-ink hover:text-ember transition"
             >
               <Phone className="h-4 w-4" />
               Call
@@ -254,13 +270,17 @@ export function Nav() {
             </button>
           </div>
 
-          <button
-            className="md:hidden p-2 rounded-lg text-navy-deep"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Menu"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          <div className="md:hidden flex items-center gap-1">
+            <ThemeToggle />
+            <button
+              className="p-2 rounded-lg text-ink"
+              onClick={() => setOpen((v) => !v)}
+              aria-label="Menu"
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+
         </div>
 
         {open && (
@@ -271,7 +291,7 @@ export function Nav() {
                   key={l.href}
                   to={l.href}
                   onClick={() => setOpen(false)}
-                  className="block px-4 py-3 rounded-xl text-navy-deep hover:bg-mist"
+                  className="block px-4 py-3 rounded-xl text-ink hover:bg-mist"
                 >
                   {l.label}
                 </Link>
@@ -280,7 +300,7 @@ export function Nav() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="block px-4 py-3 rounded-xl text-navy-deep hover:bg-mist"
+                  className="block px-4 py-3 rounded-xl text-ink hover:bg-mist"
                 >
                   {l.label}
                 </a>
@@ -318,12 +338,12 @@ function Hero() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 items-center">
           <div className="animate-rise">
-            <div className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-xs text-navy-soft shadow-soft">
+            <div className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-xs text-ink-soft shadow-soft">
               <span className="h-1.5 w-1.5 rounded-full bg-ember animate-pulse" />
               Trusted by 1,370+ Lagos homes
             </div>
 
-            <h1 className="mt-6 font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.02] text-navy-deep">
+            <h1 className="mt-6 font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.02] text-ink">
               Premium care for the{" "}
               <span className="relative inline-block">
                 <span className="relative z-10 italic">homes</span>
@@ -351,7 +371,7 @@ function Hero() {
                 href={waLink(WA_MESSAGES.general)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-navy-deep px-6 py-3.5 font-medium border border-border hover:border-navy/40 hover:-translate-y-0.5 transition shadow-soft"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-card text-ink px-6 py-3.5 font-medium border border-border hover:border-navy/40 hover:-translate-y-0.5 transition shadow-soft"
               >
                 <MessageCircle className="h-4 w-4 text-ember" />
                 Chat on WhatsApp
@@ -366,7 +386,7 @@ function Hero() {
                 { k: <><Counter to={74} suffix="%" /></>, v: "Repeat clients" },
               ].map((s, i) => (
                 <div key={i}>
-                  <dt className="font-display text-3xl sm:text-4xl text-navy-deep">
+                  <dt className="font-display text-3xl sm:text-4xl text-ink">
                     {s.k}
                   </dt>
                   <dd className="mt-1 text-xs sm:text-sm text-muted-foreground">
@@ -381,8 +401,8 @@ function Hero() {
           <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-elegant">
               <img
-                src={livingRoomTv}
-                alt="Neptunx installed wall-mounted TV and lounge fit-out in a modern Lagos living room"
+                src={loungeIkoyi}
+                alt="Neptunx completed living room fitout in a modern Ikoyi home"
                 width={1600}
                 height={1200}
                 className="w-full h-[420px] sm:h-[560px] object-cover"
@@ -397,7 +417,7 @@ function Hero() {
                   </div>
                   <div className="min-w-0">
                     <div className="text-xs text-muted-foreground">Just completed</div>
-                    <div className="text-sm font-semibold text-navy-deep truncate">
+                    <div className="text-sm font-semibold text-ink truncate">
                       Living room fitout · Ikoyi
                     </div>
 
@@ -407,7 +427,7 @@ function Hero() {
 
               {/* Floating card 2 */}
               <div className="absolute right-4 sm:right-6 top-4 sm:top-6 glass rounded-2xl p-3 sm:p-4 shadow-soft">
-                <div className="flex items-center gap-2 text-navy-deep">
+                <div className="flex items-center gap-2 text-ink">
                   <ShieldCheck className="h-4 w-4 text-ember" />
                   <span className="text-xs font-medium">Certified · Insured</span>
                 </div>
@@ -427,14 +447,14 @@ function Hero() {
 function TrustStrip() {
   const items = ["Ikoyi", "Lekki", "Victoria Island", "Banana Island", "Ikeja GRA", "Yaba"];
   return (
-    <section className="border-y border-border/60 bg-white/60">
+    <section className="border-y border-border/60 bg-card/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 flex flex-wrap items-center justify-between gap-x-8 gap-y-3">
         <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
           Serving Lagos' finest neighborhoods
         </div>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
           {items.map((i) => (
-            <div key={i} className="flex items-center gap-1.5 text-navy-soft text-sm">
+            <div key={i} className="flex items-center gap-1.5 text-ink-soft text-sm">
               <MapPin className="h-3.5 w-3.5 text-ember" />
               {i}
             </div>
@@ -495,7 +515,7 @@ function Services() {
             <div className="text-xs uppercase tracking-[0.22em] text-ember font-medium">
               Services
             </div>
-            <h2 className="mt-3 font-display text-4xl sm:text-5xl text-navy-deep leading-[1.05]">
+            <h2 className="mt-3 font-display text-4xl sm:text-5xl text-ink leading-[1.05]">
               Every discipline your home needs, under one roof.
             </h2>
             <p className="mt-4 text-muted-foreground">
@@ -517,7 +537,7 @@ function Services() {
                     className={`h-full w-full object-cover transition duration-[1200ms] ${s.pos ?? "object-center scale-105 group-hover:scale-110"}`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/70 via-navy-deep/10 to-transparent" />
-                  <div className="absolute top-3 left-3 glass rounded-full px-2.5 py-1 text-[10px] uppercase tracking-widest text-navy-deep">
+                  <div className="absolute top-3 left-3 glass rounded-full px-2.5 py-1 text-[10px] uppercase tracking-widest text-ink">
                     {s.tag}
                   </div>
                   <div className="absolute bottom-3 left-3 h-10 w-10 rounded-xl bg-ember-gradient grid place-items-center shadow-ember">
@@ -525,7 +545,7 @@ function Services() {
                   </div>
                 </div>
                 <div className="p-5">
-                  <h3 className="font-semibold text-navy-deep text-lg">{s.title}</h3>
+                  <h3 className="font-semibold text-ink text-lg">{s.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                     {s.desc}
                   </p>
@@ -533,7 +553,7 @@ function Services() {
                     <button
                       type="button"
                       onClick={() => openBooking(s.title)}
-                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy-deep hover:text-ember transition group/link"
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:text-ember transition group/link"
                     >
                       Book service
                       <ArrowUpRight className="h-4 w-4 text-ember transition group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
@@ -607,7 +627,7 @@ function Shop() {
               <div className="text-xs uppercase tracking-[0.22em] text-ember font-medium">
                 Curated Shop
               </div>
-              <h2 className="mt-3 font-display text-4xl sm:text-5xl text-navy-deep leading-[1.05]">
+              <h2 className="mt-3 font-display text-4xl sm:text-5xl text-ink leading-[1.05]">
                 Appliances, chosen with intent.
               </h2>
               <p className="mt-4 text-muted-foreground">
@@ -619,7 +639,7 @@ function Shop() {
               href={waLink("Hi Neptunx, please share your full product catalog and current prices.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-medium text-navy-deep hover:text-ember transition"
+              className="inline-flex items-center gap-2 text-sm font-medium text-ink hover:text-ember transition"
             >
               View full catalog
               <ArrowRight className="h-4 w-4" />
@@ -639,10 +659,10 @@ function Shop() {
                     loading="lazy"
                     className="h-full w-full object-contain p-6 group-hover:scale-105 transition duration-700"
                   />
-                  <div className="absolute top-3 right-3 h-9 w-9 rounded-full bg-white grid place-items-center shadow-soft opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition">
-                    <ShoppingBag className="h-4 w-4 text-navy-deep" />
+                  <div className="absolute top-3 right-3 h-9 w-9 rounded-full bg-card grid place-items-center shadow-soft opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition">
+                    <ShoppingBag className="h-4 w-4 text-ink" />
                   </div>
-                  <div className="absolute top-3 left-3 flex items-center gap-1.5 glass rounded-full px-2.5 py-1 text-[10px] uppercase tracking-widest text-navy-deep">
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5 glass rounded-full px-2.5 py-1 text-[10px] uppercase tracking-widest text-ink">
                     <p.icon className="h-3 w-3 text-ember" />
                     In stock
                   </div>
@@ -651,11 +671,11 @@ function Shop() {
                   <div className="text-[11px] uppercase tracking-widest text-muted-foreground">
                     {p.tag}
                   </div>
-                  <h3 className="mt-1 font-semibold text-navy-deep leading-snug">
+                  <h3 className="mt-1 font-semibold text-ink leading-snug">
                     {p.name}
                   </h3>
                   <div className="mt-auto pt-4 flex items-center justify-between">
-                    <div className="font-display text-2xl text-navy-deep">{p.price}</div>
+                    <div className="font-display text-2xl text-ink">{p.price}</div>
                     <a
                       href={waLink(`Hi Neptunx, I'd like to order the ${p.name} (${p.price}). Please confirm availability and delivery.`)}
                       target="_blank"
@@ -778,7 +798,7 @@ function Testimonials() {
             <div className="text-xs uppercase tracking-[0.22em] text-ember font-medium">
               Client stories
             </div>
-            <h2 className="mt-3 font-display text-4xl sm:text-5xl text-navy-deep leading-[1.05]">
+            <h2 className="mt-3 font-display text-4xl sm:text-5xl text-ink leading-[1.05]">
               The homes we serve, in their own words.
             </h2>
           </div>
@@ -793,7 +813,7 @@ function Testimonials() {
                     <Star key={j} className="h-4 w-4 fill-current" />
                   ))}
                 </div>
-                <blockquote className="mt-5 font-display text-2xl text-navy-deep leading-snug">
+                <blockquote className="mt-5 font-display text-2xl text-ink leading-snug">
                   "{r.quote}"
                 </blockquote>
                 <figcaption className="mt-auto pt-6 flex items-center gap-3">
@@ -801,7 +821,7 @@ function Testimonials() {
                     {r.name[0]}
                   </div>
                   <div className="min-w-0">
-                    <div className="text-sm font-semibold text-navy-deep truncate">
+                    <div className="text-sm font-semibold text-ink truncate">
                       {r.name}
                     </div>
                     <div className="text-xs text-muted-foreground truncate">{r.role}</div>
@@ -891,15 +911,15 @@ function CTA() {
 /* ---------------- Footer ---------------- */
 export function Footer() {
   return (
-    <footer className="border-t border-border/60 py-12 bg-white">
+    <footer className="border-t border-border/60 py-12 bg-card">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="grid md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-8">
+        <div className="grid md:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] gap-8">
           <div>
             <div className="flex items-center gap-2.5">
               <Logo className="h-10 w-10" />
 
               <div>
-                <div className="font-semibold tracking-tight text-navy-deep">Neptunx</div>
+                <div className="font-semibold tracking-tight text-ink">Neptunx</div>
                 <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
                   Home Interiors
                 </div>
@@ -912,7 +932,7 @@ export function Footer() {
             <div className="mt-5 space-y-2 text-sm text-muted-foreground">
               <div>C7, 96 Nicon Town, Lekki, Lagos</div>
               <div>Block C, 104 Complex, Ogijo Bus Stop, Ikorodu</div>
-              <a href={TEL} className="inline-block font-medium text-navy-deep hover:text-ember transition">
+              <a href={TEL} className="inline-block font-medium text-ink hover:text-ember transition">
                 {PHONE_DISPLAY}
               </a>
             </div>
@@ -921,19 +941,44 @@ export function Footer() {
             { h: "Services", l: ["HVAC", "Refrigeration", "Interiors", "Maintenance"] },
             { h: "Shop", l: ["Air conditioners", "Refrigerators", "Washers", "Microwaves"] },
             { h: "Company", l: ["About", "Team", "Partners", "Contact"] },
+            { h: "Legal", l: ["Privacy Policy", "Terms & Conditions"] },
           ].map((c) => (
             <div key={c.h}>
-              <div className="text-xs uppercase tracking-[0.2em] text-navy-deep font-medium">
+              <div className="text-xs uppercase tracking-[0.2em] text-ink font-medium">
                 {c.h}
               </div>
               <ul className="mt-4 space-y-2">
-                {c.l.map((i) => (
-                  <li key={i}>
-                    <a href="#" className="text-sm text-muted-foreground hover:text-ember transition">
-                      {i}
-                    </a>
-                  </li>
-                ))}
+                {c.l.map((i) => {
+                  const href =
+                    i === "Privacy Policy"
+                      ? "/privacy"
+                      : i === "Terms & Conditions"
+                        ? "/terms"
+                        : i === "About"
+                          ? "/about"
+                          : i === "Team"
+                            ? "/about#team"
+                            : i === "Partners"
+                              ? "/about#partners"
+                              : "#";
+                  const isRoute = href.startsWith("/");
+                  return (
+                    <li key={i}>
+                      {isRoute ? (
+                        <Link
+                          to={href}
+                          className="text-sm text-muted-foreground hover:text-ember transition"
+                        >
+                          {i}
+                        </Link>
+                      ) : (
+                        <a href={href} className="text-sm text-muted-foreground hover:text-ember transition">
+                          {i}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
@@ -963,7 +1008,7 @@ export function MobileActions() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        className="inline-flex items-center justify-center rounded-full bg-white text-navy-deep border border-border px-4 py-3.5 font-medium shadow-soft"
+        className="inline-flex items-center justify-center rounded-full bg-card text-ink border border-border px-4 py-3.5 font-medium shadow-soft"
       >
         <MessageCircle className="h-5 w-5" />
       </a>
@@ -1100,13 +1145,13 @@ export function BookingModal() {
         onClick={() => setOpen(false)}
         className="absolute inset-0 bg-navy-deep/60 backdrop-blur-sm animate-fade-in"
       />
-      <div className="relative w-full sm:max-w-xl bg-white rounded-t-3xl sm:rounded-3xl shadow-elegant border border-border/60 max-h-[92vh] flex flex-col animate-rise">
+      <div className="relative w-full sm:max-w-xl bg-card rounded-t-3xl sm:rounded-3xl shadow-elegant border border-border/60 max-h-[92vh] flex flex-col animate-rise">
         <div className="flex items-start justify-between gap-4 px-6 pt-6">
           <div className="min-w-0">
             <div className="text-xs uppercase tracking-[0.22em] text-ember font-medium">
               Book a service
             </div>
-            <h3 id="booking-title" className="mt-1 font-display text-2xl text-navy-deep leading-tight truncate">
+            <h3 id="booking-title" className="mt-1 font-display text-2xl text-ink leading-tight truncate">
               Schedule your Neptunx visit
             </h3>
           </div>
@@ -1114,7 +1159,7 @@ export function BookingModal() {
             type="button"
             onClick={() => setOpen(false)}
             aria-label="Close"
-            className="shrink-0 rounded-full p-2 text-navy-deep hover:bg-mist transition"
+            className="shrink-0 rounded-full p-2 text-ink hover:bg-mist transition"
           >
             <X className="h-5 w-5" />
           </button>
@@ -1126,7 +1171,7 @@ export function BookingModal() {
               <div className="h-12 w-12 rounded-full bg-ember-gradient grid place-items-center shadow-ember">
                 <CheckCircle2 className="h-6 w-6 text-primary-foreground" />
               </div>
-              <h4 className="mt-4 font-display text-2xl text-navy-deep">Request sent</h4>
+              <h4 className="mt-4 font-display text-2xl text-ink">Request sent</h4>
               <p className="mt-2 text-sm text-muted-foreground max-w-sm">
                 We opened WhatsApp with your details. A specialist will confirm
                 your slot within the hour. You can also call us directly.
@@ -1141,7 +1186,7 @@ export function BookingModal() {
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2.5 text-sm text-navy-deep hover:bg-mist"
+                  className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2.5 text-sm text-ink hover:bg-mist"
                 >
                   Done
                 </button>
@@ -1244,7 +1289,7 @@ export function BookingModal() {
             <div className="pt-2 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3">
               <a
                 href={TEL}
-                className="inline-flex items-center justify-center gap-2 text-sm text-navy-deep hover:text-ember transition"
+                className="inline-flex items-center justify-center gap-2 text-sm text-ink hover:text-ember transition"
               >
                 <Phone className="h-4 w-4" /> Prefer to call? {PHONE_DISPLAY}
               </a>
@@ -1278,7 +1323,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="text-xs uppercase tracking-[0.18em] text-navy-deep font-medium">
+      <span className="text-xs uppercase tracking-[0.18em] text-ink font-medium">
         {label}
       </span>
       <div className="mt-1.5">{children}</div>
@@ -1288,6 +1333,44 @@ function Field({
 }
 
 /* ---------------- Page ---------------- */
+function Gallery() {
+  return (
+    <section id="work" className="py-24 sm:py-32 bg-card/40">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <Reveal>
+          <div className="max-w-2xl">
+            <div className="text-xs uppercase tracking-[0.2em] text-ember">Recent work</div>
+            <h2 className="mt-3 font-display text-4xl sm:text-5xl text-ink">
+              Real Lagos homes, finished by our team
+            </h2>
+          </div>
+        </Reveal>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {gallery.map((g, i) => (
+            <Reveal key={g.title} delay={i * 80}>
+              <figure className="group relative overflow-hidden rounded-3xl shadow-soft">
+                <img
+                  src={g.src}
+                  alt={`${g.title} completed by Neptunx in ${g.place}`}
+                  loading="lazy"
+                  width={1200}
+                  height={1600}
+                  className="h-[320px] sm:h-[380px] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/70 via-navy-deep/10 to-transparent" />
+                <figcaption className="absolute bottom-4 left-4 right-4">
+                  <div className="text-sm font-semibold text-white">{g.title}</div>
+                  <div className="text-xs text-white/75">{g.place}</div>
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Landing() {
   return (
     <main className="min-h-screen bg-background">
@@ -1295,6 +1378,7 @@ function Landing() {
       <Hero />
       <TrustStrip />
       <Services />
+      <Gallery />
       <Shop />
       <Partners />
       <WhyUs />
@@ -1308,4 +1392,5 @@ function Landing() {
     </main>
   );
 }
+
 
