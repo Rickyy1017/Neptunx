@@ -1,4 +1,3 @@
-
 import { Link, createFileRoute } from "@tanstack/react-router";
 import type * as React from "react";
 import { useEffect, useRef, useState } from "react";
@@ -612,7 +611,21 @@ const products = [
   },
 ];
 
+function buildProductOrderMessage(product: (typeof products)[number]) {
+  return [
+    "Hi Neptunx, I would like to purchase this product.",
+    `Product: ${product.name}`,
+    `Details: ${product.tag}`,
+    `Price: ${product.price}`,
+    "Please confirm availability, delivery options, and how I can complete payment.",
+  ].join("\n");
+}
+
 function Shop() {
+  const handleProductOrder = (product: (typeof products)[number]) => {
+    window.open(waLink(buildProductOrderMessage(product)), "_blank", "noopener,noreferrer");
+  };
+
   return (
     <section id="shop" className="py-24 sm:py-32 bg-mist-gradient relative overflow-hidden">
       <div className="absolute inset-0 -z-10 opacity-40">
@@ -651,7 +664,9 @@ function Shop() {
         <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {products.map((p, i) => (
             <Reveal key={p.name} delay={i * 70}>
-              <article className="group rounded-3xl bg-card border border-border/60 overflow-hidden shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-500 h-full flex flex-col">
+              <article
+                className="group rounded-3xl bg-card border border-border/60 overflow-hidden shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-500 h-full flex flex-col"
+              >
                 <div className="relative aspect-square bg-mist overflow-hidden">
                   <img
                     src={p.image}
@@ -676,15 +691,17 @@ function Shop() {
                   </h3>
                   <div className="mt-auto pt-4 flex items-center justify-between">
                     <div className="font-display text-2xl text-ink">{p.price}</div>
-                    <a
-                      href={waLink(`Hi Neptunx, I'd like to order the ${p.name} (${p.price}). Please confirm availability and delivery.`)}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      type="button"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        handleProductOrder(p);
+                      }}
                       className="inline-flex items-center gap-1.5 rounded-full bg-navy-deep text-primary-foreground px-3.5 py-2 text-xs font-medium hover:bg-ember transition"
                     >
                       Order
                       <ArrowRight className="h-3 w-3" />
-                    </a>
+                    </button>
 
                   </div>
                 </div>

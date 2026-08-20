@@ -9,6 +9,7 @@ import {
   MapPin,
   Phone,
   ArrowUpRight,
+  ArrowRight,
   ShoppingBag,
 } from "lucide-react";
 
@@ -296,6 +297,22 @@ type Partner = {
   products: PartnerProduct[];
 };
 
+function waLink(message?: string) {
+  const WHATSAPP = "https://wa.me/2348149024653";
+  return message ? `${WHATSAPP}?text=${encodeURIComponent(message)}` : WHATSAPP;
+}
+
+function buildPartnerProductOrderMessage(partner: Partner, product: PartnerProduct) {
+  return [
+    "Hi Neptunx, I would like to purchase this product.",
+    `Brand: ${partner.name}`,
+    `Product: ${product.name}`,
+    `Category: ${product.category}`,
+    `Price: ${product.price}`,
+    "Please confirm availability, delivery, and payment options.",
+  ].join("\n");
+}
+
 const partners: Partner[] = [
   {
     name: "LG",
@@ -522,7 +539,9 @@ const partners: Partner[] = [
 ];
 
 export function Partners() {
-  const [activePartner, setActivePartner] = useState(partners[0]);
+  const [activePartner, setActivePartner] = useState(
+    () => partners.find((p) => p.name === "Midea") ?? partners[0],
+  );
 
   return (
     <section id="partners" className="py-16 sm:py-20 bg-background border-y border-border/60 relative overflow-hidden">
@@ -591,11 +610,8 @@ export function Partners() {
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {activePartner.products.map((product) => (
-                <a
+                <div
                   key={`${activePartner.name}-${product.name}`}
-                  href={product.source}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="group overflow-hidden rounded-2xl border border-border/70 bg-background hover:border-ember/60 hover:shadow-elegant transition-all duration-300"
                 >
                   <div className="aspect-[4/3] bg-mist p-5 grid place-items-center">
@@ -618,7 +634,24 @@ export function Partners() {
                     </h4>
                     <div className="mt-3 text-lg font-semibold text-ember">{product.price}</div>
                   </div>
-                </a>
+
+                  <div className="flex items-center gap-2 px-4 pb-4">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        window.open(
+                          waLink(buildPartnerProductOrderMessage(activePartner, product)),
+                          "_blank",
+                          "noopener,noreferrer",
+                        )
+                      }
+                      className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-ember px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-ember/90 transition"
+                    >
+                      Order
+                      <ArrowRight className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
