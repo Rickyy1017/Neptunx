@@ -617,6 +617,7 @@ function buildProductOrderMessage(product: (typeof products)[number]) {
     `Product: ${product.name}`,
     `Details: ${product.tag}`,
     `Price: ${product.price}`,
+    `Image: ${product.image}`,
     "Please confirm availability, delivery options, and how I can complete payment.",
   ].join("\n");
 }

@@ -309,6 +309,7 @@ function buildPartnerProductOrderMessage(partner: Partner, product: PartnerProdu
     `Product: ${product.name}`,
     `Category: ${product.category}`,
     `Price: ${product.price}`,
+    `Image: ${product.image}`,
     "Please confirm availability, delivery, and payment options.",
   ].join("\n");
 }
