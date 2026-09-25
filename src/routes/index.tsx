@@ -1,4 +1,4 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import type * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -13,7 +13,6 @@ import {
   ShieldCheck,
   Clock,
   Sparkles,
-  Star,
   Menu,
   X,
   ShoppingBag,
@@ -24,10 +23,12 @@ import {
 
 
 import serviceFridge from "@/assets/service-fridge.jpg";
-import productAc from "@/assets/product-ac.jpg";
-import productFridge from "@/assets/product-fridge.jpg";
-import productWasher from "@/assets/product-washer.jpg";
-import productMicrowave from "@/assets/product-microwave.jpg";
+import lgFridgeAsset from "@/assets/official-products/lg-gc-x257cses.jpg";
+import lgWasherAsset from "@/assets/official-products/lg-f4v5rgp2t.jpg";
+import lgTvAsset from "@/assets/official-products/lg-oled77g56la.jpg";
+import hisenseAcAsset from "@/assets/official-products/hisense-as12.jpg";
+import mideaAirFryerAsset from "@/assets/official-products/midea-met26c4ast.webp";
+import panasonicPurifierAsset from "@/assets/official-products/panasonic-f-vxv70a.png";
 import logoAsset from "@/assets/neptunx-logo.png";
 import serviceHvacAsset from "@/assets/split-ac-install.jpg";
 import standingAcAsset from "@/assets/standing-ac-install.jpg";
@@ -582,51 +583,51 @@ function Services() {
 /* ---------------- Shop ---------------- */
 const products = [
   {
-    name: "Neptunx Cool Pro Split AC",
-    tag: "1.5HP · Inverter",
-    price: "₦520,000",
-    image: productAc,
+    name: "Hisense AS-12UW4SGEDC00 Split AC",
+    tag: "12,000 BTU · Inverter",
+    price: "NGN 620,000",
+    image: hisenseAcAsset,
     icon: Wind,
   },
   {
-    name: "Arcta French-Door Refrigerator",
-    tag: "545L · Smart Display",
-    price: "₦1,850,000",
-    image: productFridge,
+    name: "LG GC-X257CSES InstaView Refrigerator",
+    tag: "674L · InstaView",
+    price: "NGN 3,980,000",
+    image: lgFridgeAsset,
     icon: Snowflake,
   },
   {
-    name: "Halo Front-Load Washer",
-    tag: "10kg · Silent Drive",
-    price: "₦780,000",
-    image: productWasher,
+    name: "LG F4V5RGP2T Washer Dryer",
+    tag: "10.5kg / 7kg · AI DD",
+    price: "NGN 1,490,000",
+    image: lgWasherAsset,
     icon: Sparkles,
   },
   {
-    name: "Lumen Convection Microwave",
-    tag: "32L · Stainless",
-    price: "₦260,000",
-    image: productMicrowave,
+    name: "LG OLED77G56LA OLED evo G5",
+    tag: "77 inch · 4K OLED",
+    price: "NGN 8,900,000",
+    image: lgTvAsset,
     icon: Zap,
+  },
+  {
+    name: "Midea MET26C4AST Air Fryer Oven",
+    tag: "26.4qt · Multi-function",
+    price: "NGN 385,000",
+    image: mideaAirFryerAsset,
+    icon: Zap,
+  },
+  {
+    name: "Panasonic F-VXV70A Air Purifier",
+    tag: "nanoe X · HEPA",
+    price: "NGN 785,000",
+    image: panasonicPurifierAsset,
+    icon: Sparkles,
   },
 ];
 
-function buildProductOrderMessage(product: (typeof products)[number]) {
-  return [
-    "Hi Neptunx, I would like to purchase this product.",
-    `Product: ${product.name}`,
-    `Details: ${product.tag}`,
-    `Price: ${product.price}`,
-    `Image: ${product.image}`,
-    "Please confirm availability, delivery options, and how I can complete payment.",
-  ].join("\n");
-}
 
 function Shop() {
-  const handleProductOrder = (product: (typeof products)[number]) => {
-    window.open(waLink(buildProductOrderMessage(product)), "_blank", "noopener,noreferrer");
-  };
-
   return (
     <section id="shop" className="py-24 sm:py-32 bg-mist-gradient relative overflow-hidden">
       <div className="absolute inset-0 -z-10 opacity-40">
@@ -665,9 +666,7 @@ function Shop() {
         <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {products.map((p, i) => (
             <Reveal key={p.name} delay={i * 70}>
-              <article
-                className="group rounded-3xl bg-card border border-border/60 overflow-hidden shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-500 h-full flex flex-col"
-              >
+              <article className="group rounded-3xl bg-card border border-border/60 overflow-hidden shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-500 h-full flex flex-col">
                 <div className="relative aspect-square bg-mist overflow-hidden">
                   <img
                     src={p.image}
@@ -692,17 +691,15 @@ function Shop() {
                   </h3>
                   <div className="mt-auto pt-4 flex items-center justify-between">
                     <div className="font-display text-2xl text-ink">{p.price}</div>
-                    <button
-                      type="button"
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        handleProductOrder(p);
-                      }}
+                    <a
+                      href={waLink(`Hi Neptunx, I'd like to order the ${p.name} (${p.price}). Please confirm availability and delivery.`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 rounded-full bg-navy-deep text-primary-foreground px-3.5 py-2 text-xs font-medium hover:bg-ember transition"
                     >
                       Order
                       <ArrowRight className="h-3 w-3" />
-                    </button>
+                    </a>
 
                   </div>
                 </div>
@@ -779,75 +776,6 @@ function WhyUs() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Testimonials ---------------- */
-const reviews = [
-  {
-    quote:
-      "Neptunx installed our whole AC system in a day. Clean, quiet, and the finish looks factory-perfect.",
-    name: "Ada O.",
-    role: "Homeowner · Ikoyi",
-  },
-  {
-    quote:
-      "Finally, a service company that shows up when they say they will. Our building trusts them now.",
-    name: "Emeka U.",
-    role: "Facility Manager · Lekki",
-  },
-  {
-    quote:
-      "Their interior team refined every detail. Our apartment feels ten years newer.",
-    name: "Zainab A.",
-    role: "Client · Banana Island",
-  },
-];
-
-function Testimonials() {
-  return (
-    <section className="py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <Reveal>
-          <div className="max-w-2xl">
-            <div className="text-xs uppercase tracking-[0.22em] text-ember font-medium">
-              Client stories
-            </div>
-            <h2 className="mt-3 font-display text-4xl sm:text-5xl text-ink leading-[1.05]">
-              The homes we serve, in their own words.
-            </h2>
-          </div>
-        </Reveal>
-
-        <div className="mt-14 grid md:grid-cols-3 gap-5">
-          {reviews.map((r, i) => (
-            <Reveal key={r.name} delay={i * 90}>
-              <figure className="rounded-3xl bg-card border border-border/60 p-7 shadow-soft h-full flex flex-col hover:shadow-elegant transition">
-                <div className="flex gap-0.5 text-ember">
-                  {Array.from({ length: 5 }).map((_, j) => (
-                    <Star key={j} className="h-4 w-4 fill-current" />
-                  ))}
-                </div>
-                <blockquote className="mt-5 font-display text-2xl text-ink leading-snug">
-                  "{r.quote}"
-                </blockquote>
-                <figcaption className="mt-auto pt-6 flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-ember-gradient grid place-items-center text-primary-foreground font-semibold shrink-0">
-                    {r.name[0]}
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-sm font-semibold text-ink truncate">
-                      {r.name}
-                    </div>
-                    <div className="text-xs text-muted-foreground truncate">{r.role}</div>
-                  </div>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
         </div>
       </div>
     </section>
@@ -955,48 +883,59 @@ export function Footer() {
               </a>
             </div>
           </div>
-          {[
-            { h: "Services", l: ["HVAC", "Refrigeration", "Interiors", "Maintenance"] },
-            { h: "Shop", l: ["Air conditioners", "Refrigerators", "Washers", "Microwaves"] },
-            { h: "Company", l: ["About", "Team", "Partners", "Contact"] },
-            { h: "Legal", l: ["Privacy Policy", "Terms & Conditions"] },
-          ].map((c) => (
+          {(
+            [
+              {
+                h: "Services",
+                l: [
+                  { label: "HVAC", href: "/#services" },
+                  { label: "Refrigeration", href: "/#services" },
+                  { label: "Interiors", href: "/#services" },
+                  { label: "Maintenance", href: "/#services" },
+                ],
+              },
+              {
+                h: "Shop by brand",
+                l: [
+                  { label: "LG", href: "/brands/lg" },
+                  { label: "Hisense", href: "/brands/hisense" },
+                  { label: "Panasonic", href: "/brands/panasonic" },
+                  { label: "Midea", href: "/brands/midea" },
+                ],
+              },
+              {
+                h: "Company",
+                l: [
+                  { label: "About", href: "/about" },
+                  { label: "Team", href: "/about#team" },
+                  { label: "Partners", href: "/about#partners" },
+                  { label: "Contact", href: "/#contact" },
+                ],
+              },
+              {
+                h: "Legal",
+                l: [
+                  { label: "Privacy Policy", href: "/privacy" },
+                  { label: "Terms & Conditions", href: "/terms" },
+                ],
+              },
+            ] as const
+          ).map((c) => (
             <div key={c.h}>
               <div className="text-xs uppercase tracking-[0.2em] text-ink font-medium">
                 {c.h}
               </div>
               <ul className="mt-4 space-y-2">
-                {c.l.map((i) => {
-                  const href =
-                    i === "Privacy Policy"
-                      ? "/privacy"
-                      : i === "Terms & Conditions"
-                        ? "/terms"
-                        : i === "About"
-                          ? "/about"
-                          : i === "Team"
-                            ? "/about#team"
-                            : i === "Partners"
-                              ? "/about#partners"
-                              : "#";
-                  const isRoute = href.startsWith("/");
-                  return (
-                    <li key={i}>
-                      {isRoute ? (
-                        <Link
-                          to={href}
-                          className="text-sm text-muted-foreground hover:text-ember transition"
-                        >
-                          {i}
-                        </Link>
-                      ) : (
-                        <a href={href} className="text-sm text-muted-foreground hover:text-ember transition">
-                          {i}
-                        </a>
-                      )}
-                    </li>
-                  );
-                })}
+                {c.l.map((i) => (
+                  <li key={`${c.h}-${i.label}`}>
+                    <a
+                      href={i.href}
+                      className="text-sm text-muted-foreground hover:text-ember transition"
+                    >
+                      {i.label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           ))}
@@ -1401,7 +1340,6 @@ function Landing() {
       <Partners />
       <WhyUs />
 
-      <Testimonials />
 
       <CTA />
       <Footer />
