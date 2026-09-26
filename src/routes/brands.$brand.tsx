@@ -1,9 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { ArrowLeft, ArrowRight, ExternalLink, MessageCircle, Phone, Search } from "lucide-react";
+import { ArrowLeft, ArrowRight, MessageCircle, Phone, Search } from "lucide-react";
 
 import { Nav, Footer, MobileActions, BookingModal } from "@/routes/index";
 import { brands, getBrand, naira, type Category } from "@/data/brands";
+import { getProductPageUrl, openProductWhatsApp } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/brands/$brand")({
   loader: ({ params }) => {
@@ -168,20 +169,26 @@ function BrandPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {visible.map((p) => {
+              const productPage = getProductPageUrl(p.model);
               const message =
                 "Hi Neptunx, I would like to purchase this product.\n" +
                 `Brand: ${brand.name}\n` +
                 `Product: ${brand.name} ${p.name}\n` +
                 `Category: ${p.category}\n` +
                 `Price: ${naira(p.price)}\n` +
-                `Product page: ${p.sourcePage}\n` +
+                `Product page: ${productPage}\n` +
                 "Please confirm availability, delivery, and payment options.";
               return (
                 <article
                   key={`${p.model}-${p.name}`}
                   className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border/60 bg-card shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-elegant"
                 >
-                  <div className="relative aspect-square bg-mist overflow-hidden">
+                  <Link
+                    to="/products/$productId"
+                    params={{ productId: p.model }}
+                    className="relative block aspect-square overflow-hidden bg-mist"
+                    aria-label={`View ${brand.name} ${p.name}`}
+                  >
                     <img
                       src={p.image}
                       alt={`${brand.name} ${p.name}, model ${p.model}`}
@@ -191,35 +198,33 @@ function BrandPage() {
                     <div className="absolute left-3 top-3 rounded-full bg-card/90 px-2.5 py-1 text-[10px] uppercase tracking-widest text-ink shadow-soft">
                       {p.category}
                     </div>
-                  </div>
+                  </Link>
                   <div className="flex flex-1 flex-col p-5">
                     <div className="text-[11px] uppercase tracking-widest text-muted-foreground">
                       {brand.name} {p.model}
                     </div>
-                    <h2 className="mt-1 font-semibold leading-snug text-ink">{p.name}</h2>
+                    <h2 className="mt-1 font-semibold leading-snug text-ink">
+                      <Link
+                        to="/products/$productId"
+                        params={{ productId: p.model }}
+                        className="transition hover:text-ember"
+                      >
+                        {p.name}
+                      </Link>
+                    </h2>
                     <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                       {p.spec}
                     </p>
                     <div className="mt-auto pt-5">
                       <div className="font-display text-2xl text-ink">{naira(p.price)}</div>
-                      <a
-                        href={p.sourcePage}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-ink-soft transition hover:text-ember"
-                      >
-                        View official model
-                        <ExternalLink className="h-3.5 w-3.5" />
-                      </a>
-                      <a
-                        href={`https://wa.me/${WHATSAPP_E164}?text=${encodeURIComponent(message)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ember-gradient px-4 py-3 text-sm font-medium text-primary-foreground shadow-ember transition hover:-translate-y-0.5"
+                      <button
+                        type="button"
+                        onClick={() => openProductWhatsApp(message)}
+                        className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ember-gradient px-4 py-3 text-sm font-medium text-primary-foreground shadow-ember transition hover:-translate-y-0.5"
                       >
                         Buy now
                         <ArrowRight className="h-4 w-4" />
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </article>

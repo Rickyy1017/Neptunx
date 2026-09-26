@@ -12,13 +12,12 @@ import {
   Wrench,
   ShieldCheck,
   Clock,
-  Sparkles,
+  CheckCircle2,
   Menu,
   X,
   ShoppingBag,
   Zap,
   MapPin,
-  CheckCircle2,
 } from "lucide-react";
 
 
@@ -601,7 +600,7 @@ const products = [
     tag: "10.5kg / 7kg · AI DD",
     price: "NGN 1,490,000",
     image: lgWasherAsset,
-    icon: Sparkles,
+    icon: CheckCircle2,
   },
   {
     name: "LG OLED77G56LA OLED evo G5",
@@ -622,7 +621,7 @@ const products = [
     tag: "nanoe X · HEPA",
     price: "NGN 785,000",
     image: panasonicPurifierAsset,
-    icon: Sparkles,
+    icon: CheckCircle2,
   },
 ];
 
@@ -716,7 +715,7 @@ function Shop() {
 const why = [
   { icon: ShieldCheck, title: "Fully insured technicians", desc: "Every visit is covered end-to-end, from arrival to sign-off." },
   { icon: Clock, title: "Same-day response", desc: "Priority dispatch across Lagos Island and Mainland." },
-  { icon: Sparkles, title: "Craft-level standard", desc: "Clean installs, tidy sites, and finishes you'd be proud to show." },
+  { icon: CheckCircle2, title: "Craft-level standard", desc: "Clean installs, tidy sites, and finishes you'd be proud to show." },
   { icon: ShoppingBag, title: "Curated appliances", desc: "Only products we'd install in our own homes." },
 ];
 
@@ -958,7 +957,7 @@ export function MobileActions() {
         onClick={() => openBooking()}
         className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-ember-gradient text-primary-foreground px-4 py-3.5 font-medium shadow-ember"
       >
-        <Sparkles className="h-4 w-4" /> Book
+        <CheckCircle2 className="h-4 w-4" /> Book
       </button>
       <a
         href={waLink(WA_MESSAGES.general)}

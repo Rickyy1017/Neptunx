@@ -4,7 +4,7 @@ import {
   ShieldCheck,
   Clock,
   Users,
-  Sparkles,
+  CheckCircle2,
   HeartHandshake,
   ScrollText,
   MapPin,
@@ -149,7 +149,7 @@ const differentiators = [
     desc: "Project, operational and financial risks managed at every stage of delivery.",
   },
   {
-    icon: Sparkles,
+    icon: CheckCircle2,
     title: "Quality workmanship",
     desc: "Industry best practices and quality materials for durable, reliable results.",
   },
