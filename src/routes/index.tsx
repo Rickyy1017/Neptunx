@@ -20,7 +20,6 @@ import {
   MapPin,
 } from "lucide-react";
 
-
 import serviceFridge from "@/assets/service-fridge.jpg";
 import lgFridgeAsset from "@/assets/official-products/lg-gc-x257cses.jpg";
 import lgWasherAsset from "@/assets/official-products/lg-f4v5rgp2t.jpg";
@@ -37,10 +36,8 @@ import interiorLoungeOrangeAsset from "@/assets/interior-lounge-orange.jpg";
 import tvWallLoungeAsset from "@/assets/tv-wall-lounge.jpg";
 import ceilingLoungeAsset from "@/assets/ceiling-lounge.jpg";
 
-
 import { Partners } from "@/components/AboutTeam";
 import { ThemeToggle } from "@/components/ThemeToggle";
-
 
 const LOGO_URL = logoAsset;
 const serviceHvac = serviceHvacAsset;
@@ -49,11 +46,17 @@ const loungeIkoyi = loungeIkoyiAsset;
 const serviceInterior = interiorOpenPlanAsset;
 const gallery = [
   { src: interiorLoungeOrangeAsset, title: "Lounge refit", place: "Lekki" },
-  { src: tvWallLoungeAsset, title: "TV wall & joinery", place: "Victoria Island" },
-  { src: ceilingLoungeAsset, title: "Ceiling & lighting design", place: "Ikeja GRA" },
+  {
+    src: tvWallLoungeAsset,
+    title: "TV wall & joinery",
+    place: "Victoria Island",
+  },
+  {
+    src: ceilingLoungeAsset,
+    title: "Ceiling & lighting design",
+    place: "Ikeja GRA",
+  },
 ];
-
-
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -201,8 +204,6 @@ export function Nav() {
     { href: "/#contact", label: "Contact" },
   ];
 
-
-
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
@@ -218,13 +219,14 @@ export function Nav() {
           <Link to="/" className="flex items-center gap-2.5 group min-w-0">
             <Logo className="h-10 w-10 sm:h-11 sm:w-11" />
             <div className="leading-tight min-w-0">
-              <div className="font-semibold tracking-tight text-ink truncate">Neptunx</div>
+              <div className="font-semibold tracking-tight text-ink truncate">
+                Neptunx
+              </div>
               <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground truncate">
                 Home Interiors
               </div>
             </div>
           </Link>
-
 
           <nav className="hidden md:flex items-center gap-1">
             {links.map((l) =>
@@ -248,11 +250,9 @@ export function Nav() {
             )}
           </nav>
 
-
           <div className="hidden md:flex items-center gap-2">
             <ThemeToggle />
             <a
-
               href={TEL}
               className="inline-flex items-center gap-2 px-3 py-2 text-sm text-ink hover:text-ember transition"
             >
@@ -279,7 +279,6 @@ export function Nav() {
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
-
         </div>
 
         {open && (
@@ -318,7 +317,6 @@ export function Nav() {
             </button>
           </div>
         )}
-
       </div>
     </header>
   );
@@ -377,12 +375,32 @@ function Hero() {
               </a>
             </div>
 
-
             <dl className="mt-12 grid grid-cols-3 gap-4 sm:gap-8 max-w-lg">
               {[
-                { k: <><Counter to={1370} suffix="+" /></>, v: "Homes served" },
-                { k: <><Counter to={7} suffix="+" /></>, v: "Years in Lagos" },
-                { k: <><Counter to={74} suffix="%" /></>, v: "Repeat clients" },
+                {
+                  k: (
+                    <>
+                      <Counter to={1370} suffix="+" />
+                    </>
+                  ),
+                  v: "Homes served",
+                },
+                {
+                  k: (
+                    <>
+                      <Counter to={7} suffix="+" />
+                    </>
+                  ),
+                  v: "Years in Lagos",
+                },
+                {
+                  k: (
+                    <>
+                      <Counter to={74} suffix="%" />
+                    </>
+                  ),
+                  v: "Repeat clients",
+                },
               ].map((s, i) => (
                 <div key={i}>
                   <dt className="font-display text-3xl sm:text-4xl text-ink">
@@ -415,11 +433,12 @@ function Hero() {
                     <Sofa className="h-5 w-5 text-primary-foreground" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs text-muted-foreground">Just completed</div>
+                    <div className="text-xs text-muted-foreground">
+                      Just completed
+                    </div>
                     <div className="text-sm font-semibold text-ink truncate">
                       Living room fitout · Ikoyi
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -428,7 +447,9 @@ function Hero() {
               <div className="absolute right-4 sm:right-6 top-4 sm:top-6 glass rounded-2xl p-3 sm:p-4 shadow-soft">
                 <div className="flex items-center gap-2 text-ink">
                   <ShieldCheck className="h-4 w-4 text-ember" />
-                  <span className="text-xs font-medium">Certified · Insured</span>
+                  <span className="text-xs font-medium">
+                    Certified · Insured
+                  </span>
                 </div>
               </div>
             </div>
@@ -444,7 +465,14 @@ function Hero() {
 
 /* ---------------- Logos strip ---------------- */
 function TrustStrip() {
-  const items = ["Ikoyi", "Lekki", "Victoria Island", "Banana Island", "Ikeja GRA", "Yaba"];
+  const items = [
+    "Ikoyi",
+    "Lekki",
+    "Victoria Island",
+    "Banana Island",
+    "Ikeja GRA",
+    "Yaba",
+  ];
   return (
     <section className="border-y border-border/60 bg-card/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 flex flex-wrap items-center justify-between gap-x-8 gap-y-3">
@@ -453,7 +481,10 @@ function TrustStrip() {
         </div>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
           {items.map((i) => (
-            <div key={i} className="flex items-center gap-1.5 text-ink-soft text-sm">
+            <div
+              key={i}
+              className="flex items-center gap-1.5 text-ink-soft text-sm"
+            >
               <MapPin className="h-3.5 w-3.5 text-ember" />
               {i}
             </div>
@@ -504,7 +535,6 @@ const services: {
   },
 ];
 
-
 function Services() {
   return (
     <section id="services" className="py-24 sm:py-32">
@@ -519,7 +549,8 @@ function Services() {
             </h2>
             <p className="mt-4 text-muted-foreground">
               A single, reliable partner for cooling, appliances and interiors,
-              delivered with a craft-level standard from first quote to final walk-through.
+              delivered with a craft-level standard from first quote to final
+              walk-through.
             </p>
           </div>
         </Reveal>
@@ -569,7 +600,6 @@ function Services() {
                     </a>
                   </div>
                 </div>
-
               </article>
             </Reveal>
           ))}
@@ -625,10 +655,12 @@ const products = [
   },
 ];
 
-
 function Shop() {
   return (
-    <section id="shop" className="py-24 sm:py-32 bg-mist-gradient relative overflow-hidden">
+    <section
+      id="shop"
+      className="py-24 sm:py-32 bg-mist-gradient relative overflow-hidden"
+    >
       <div className="absolute inset-0 -z-10 opacity-40">
         <div className="absolute top-20 right-10 h-64 w-64 rounded-full bg-ember/15 blur-3xl" />
         <div className="absolute bottom-20 left-10 h-72 w-72 rounded-full bg-navy/15 blur-3xl" />
@@ -645,12 +677,14 @@ function Shop() {
                 Appliances, chosen with intent.
               </h2>
               <p className="mt-4 text-muted-foreground">
-                A tight collection of the most quietly excellent products, installed,
-                configured, and supported by our team.
+                A tight collection of the most quietly excellent products,
+                installed, configured, and supported by our team.
               </p>
             </div>
             <a
-              href={waLink("Hi Neptunx, please share your full product catalog and current prices.")}
+              href={waLink(
+                "Hi Neptunx, please share your full product catalog and current prices.",
+              )}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm font-medium text-ink hover:text-ember transition"
@@ -658,7 +692,6 @@ function Shop() {
               View full catalog
               <ArrowRight className="h-4 w-4" />
             </a>
-
           </div>
         </Reveal>
 
@@ -689,9 +722,13 @@ function Shop() {
                     {p.name}
                   </h3>
                   <div className="mt-auto pt-4 flex items-center justify-between">
-                    <div className="font-display text-2xl text-ink">{p.price}</div>
+                    <div className="font-display text-2xl text-ink">
+                      {p.price}
+                    </div>
                     <a
-                      href={waLink(`Hi Neptunx, I'd like to order the ${p.name} (${p.price}). Please confirm availability and delivery.`)}
+                      href={waLink(
+                        `Hi Neptunx, I'd like to order the ${p.name} (${p.price}). Please confirm availability and delivery.`,
+                      )}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 rounded-full bg-navy-deep text-primary-foreground px-3.5 py-2 text-xs font-medium hover:bg-ember transition"
@@ -699,7 +736,6 @@ function Shop() {
                       Order
                       <ArrowRight className="h-3 w-3" />
                     </a>
-
                   </div>
                 </div>
               </article>
@@ -713,15 +749,34 @@ function Shop() {
 
 /* ---------------- Why us ---------------- */
 const why = [
-  { icon: ShieldCheck, title: "Fully insured technicians", desc: "Every visit is covered end-to-end, from arrival to sign-off." },
-  { icon: Clock, title: "Same-day response", desc: "Priority dispatch across Lagos Island and Mainland." },
-  { icon: CheckCircle2, title: "Craft-level standard", desc: "Clean installs, tidy sites, and finishes you'd be proud to show." },
-  { icon: ShoppingBag, title: "Curated appliances", desc: "Only products we'd install in our own homes." },
+  {
+    icon: ShieldCheck,
+    title: "Fully insured technicians",
+    desc: "Every visit is covered end-to-end, from arrival to sign-off.",
+  },
+  {
+    icon: Clock,
+    title: "Same-day response",
+    desc: "Priority dispatch across Lagos Island and Mainland.",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Craft-level standard",
+    desc: "Clean installs, tidy sites, and finishes you'd be proud to show.",
+  },
+  {
+    icon: ShoppingBag,
+    title: "Curated appliances",
+    desc: "Only products we'd install in our own homes.",
+  },
 ];
 
 function WhyUs() {
   return (
-    <section id="why" className="py-24 sm:py-32 bg-navy-deep text-primary-foreground relative overflow-hidden">
+    <section
+      id="why"
+      className="py-24 sm:py-32 bg-navy-deep text-primary-foreground relative overflow-hidden"
+    >
       <div className="absolute inset-0 grid-fade opacity-40" />
       <div className="absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-ember/20 blur-3xl" />
       <div className="absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-navy/40 blur-3xl" />
@@ -738,9 +793,9 @@ function WhyUs() {
                 <span className="italic text-ember-soft">properly.</span>
               </h2>
               <p className="mt-5 text-white/70 max-w-lg">
-                We built Neptunx for homeowners who care about how their space works,
-                not just how it looks. Every technician, every product, every callback
-                is held to a single standard.
+                We built Neptunx for homeowners who care about how their space
+                works, not just how it looks. Every technician, every product,
+                every callback is held to a single standard.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <button
@@ -757,7 +812,6 @@ function WhyUs() {
                 >
                   <Phone className="h-4 w-4" /> Call now
                 </a>
-
               </div>
             </div>
           </Reveal>
@@ -770,7 +824,9 @@ function WhyUs() {
                     <w.icon className="h-5 w-5 text-primary-foreground" />
                   </div>
                   <h3 className="mt-4 font-semibold text-white">{w.title}</h3>
-                  <p className="mt-1.5 text-sm text-white/60 leading-relaxed">{w.desc}</p>
+                  <p className="mt-1.5 text-sm text-white/60 leading-relaxed">
+                    {w.desc}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -784,20 +840,25 @@ function WhyUs() {
 /* ---------------- CTA ---------------- */
 function CTA() {
   return (
-    <section id="contact" className="pb-24 sm:pb-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+    <section
+      id="contact"
+      className="flex min-h-[100svh] flex-col justify-center py-6 sm:py-8"
+    >
+      <div className="mx-auto w-full max-w-[96rem] px-4 sm:px-6">
         <Reveal>
-          <div className="relative rounded-[2rem] overflow-hidden bg-navy-deep text-primary-foreground p-8 sm:p-14 shadow-elegant">
+          <div className="relative min-h-[32rem] rounded-[2rem] overflow-hidden bg-navy-deep text-primary-foreground p-8 sm:p-16 shadow-elegant">
             <div className="absolute inset-0 grid-fade opacity-40" />
             <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-ember/30 blur-3xl" />
-            <div className="relative grid lg:grid-cols-[1.4fr_1fr] gap-10 items-center">
+            <div className="relative grid min-h-[28rem] sm:min-h-[24rem] lg:grid-cols-[1.4fr_1fr] gap-10 items-center">
               <div>
                 <h2 className="font-display text-4xl sm:text-6xl leading-[1.03]">
-                  Ready to elevate <span className="italic text-ember-soft">your home?</span>
+                  Ready to elevate{" "}
+                  <span className="italic text-ember-soft">your home?</span>
                 </h2>
                 <p className="mt-5 text-white/70 max-w-xl">
-                  Book a site visit, request a quote, or talk to a specialist about
-                  your project. We respond within the hour, seven days a week.
+                  Book a site visit, request a quote, or talk to a specialist
+                  about your project. We respond within the hour, seven days a
+                  week.
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
                   <button
@@ -824,7 +885,6 @@ function CTA() {
                     <Phone className="h-4 w-4" /> {PHONE_DISPLAY}
                   </a>
                 </div>
-
               </div>
 
               <div className="grid grid-cols-2 gap-3">
@@ -838,7 +898,9 @@ function CTA() {
                     key={s.v}
                     className="rounded-2xl glass-dark p-5 hover:bg-white/10 transition"
                   >
-                    <div className="font-display text-3xl text-white">{s.k}</div>
+                    <div className="font-display text-3xl text-white">
+                      {s.k}
+                    </div>
                     <div className="mt-1 text-xs text-white/60 uppercase tracking-widest">
                       {s.v}
                     </div>
@@ -864,7 +926,9 @@ export function Footer() {
               <Logo className="h-10 w-10" />
 
               <div>
-                <div className="font-semibold tracking-tight text-ink">Neptunx</div>
+                <div className="font-semibold tracking-tight text-ink">
+                  Neptunx
+                </div>
                 <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
                   Home Interiors
                 </div>
@@ -877,7 +941,10 @@ export function Footer() {
             <div className="mt-5 space-y-2 text-sm text-muted-foreground">
               <div>C7, 96 Nicon Town, Lekki, Lagos</div>
               <div>Block C, 104 Complex, Ogijo Bus Stop, Ikorodu</div>
-              <a href={TEL} className="inline-block font-medium text-ink hover:text-ember transition">
+              <a
+                href={TEL}
+                className="inline-block font-medium text-ink hover:text-ember transition"
+              >
                 {PHONE_DISPLAY}
               </a>
             </div>
@@ -940,7 +1007,10 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-10 pt-6 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <div>© {new Date().getFullYear()} Neptunx Home Interiors. All rights reserved.</div>
+          <div>
+            © {new Date().getFullYear()} Neptunx Home Interiors. All rights
+            reserved.
+          </div>
           <div>Made in Lagos.</div>
         </div>
       </div>
@@ -1019,18 +1089,22 @@ export function BookingModal() {
     time: TIME_SLOTS[0],
     notes: "",
   });
-  const [errors, setErrors] = useState<Partial<Record<keyof BookingForm, string>>>({});
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof BookingForm, string>>
+  >({});
   const firstFieldRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     function onOpen(e: Event) {
-      const detail = (e as CustomEvent).detail as { service?: ServiceType } | undefined;
+      const detail = (e as CustomEvent).detail as
+        { service?: ServiceType } | undefined;
       setForm((f) => ({ ...f, service: detail?.service ?? f.service }));
       setSubmitted(false);
       setOpen(true);
     }
     window.addEventListener(BOOKING_EVENT, onOpen as EventListener);
-    return () => window.removeEventListener(BOOKING_EVENT, onOpen as EventListener);
+    return () =>
+      window.removeEventListener(BOOKING_EVENT, onOpen as EventListener);
   }, []);
 
   useEffect(() => {
@@ -1057,8 +1131,10 @@ export function BookingModal() {
 
   function validate() {
     const e: Partial<Record<keyof BookingForm, string>> = {};
-    if (!form.name.trim() || form.name.trim().length > 80) e.name = "Please enter your name.";
-    if (!/^[+()\d\s-]{7,20}$/.test(form.phone.trim())) e.phone = "Enter a valid phone number.";
+    if (!form.name.trim() || form.name.trim().length > 80)
+      e.name = "Please enter your name.";
+    if (!/^[+()\d\s-]{7,20}$/.test(form.phone.trim()))
+      e.phone = "Enter a valid phone number.";
     if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim()))
       e.email = "Enter a valid email or leave blank.";
     if (!form.address.trim() || form.address.trim().length > 160)
@@ -1107,7 +1183,10 @@ export function BookingModal() {
             <div className="text-xs uppercase tracking-[0.22em] text-ember font-medium">
               Book a service
             </div>
-            <h3 id="booking-title" className="mt-1 font-display text-2xl text-ink leading-tight truncate">
+            <h3
+              id="booking-title"
+              className="mt-1 font-display text-2xl text-ink leading-tight truncate"
+            >
               Schedule your Neptunx visit
             </h3>
           </div>
@@ -1127,7 +1206,9 @@ export function BookingModal() {
               <div className="h-12 w-12 rounded-full bg-ember-gradient grid place-items-center shadow-ember">
                 <CheckCircle2 className="h-6 w-6 text-primary-foreground" />
               </div>
-              <h4 className="mt-4 font-display text-2xl text-ink">Request sent</h4>
+              <h4 className="mt-4 font-display text-2xl text-ink">
+                Request sent
+              </h4>
               <p className="mt-2 text-sm text-muted-foreground max-w-sm">
                 We opened WhatsApp with your details. A specialist will confirm
                 your slot within the hour. You can also call us directly.
@@ -1150,7 +1231,10 @@ export function BookingModal() {
             </div>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="p-6 flex-1 overflow-y-auto space-y-4">
+          <form
+            onSubmit={handleSubmit}
+            className="p-6 flex-1 overflow-y-auto space-y-4"
+          >
             <div className="grid sm:grid-cols-2 gap-4">
               <Field label="Full name" error={errors.name}>
                 <input
@@ -1187,7 +1271,9 @@ export function BookingModal() {
             <Field label="Service" error={errors.service}>
               <select
                 value={form.service}
-                onChange={(e) => update("service", e.target.value as ServiceType)}
+                onChange={(e) =>
+                  update("service", e.target.value as ServiceType)
+                }
                 className="field-input"
               >
                 {SERVICE_TYPES.map((s) => (
@@ -1295,7 +1381,9 @@ function Gallery() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <Reveal>
           <div className="max-w-2xl">
-            <div className="text-xs uppercase tracking-[0.2em] text-ember">Recent work</div>
+            <div className="text-xs uppercase tracking-[0.2em] text-ember">
+              Recent work
+            </div>
             <h2 className="mt-3 font-display text-4xl sm:text-5xl text-ink">
               Real Lagos homes, finished by our team
             </h2>
@@ -1315,7 +1403,9 @@ function Gallery() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/70 via-navy-deep/10 to-transparent" />
                 <figcaption className="absolute bottom-4 left-4 right-4">
-                  <div className="text-sm font-semibold text-white">{g.title}</div>
+                  <div className="text-sm font-semibold text-white">
+                    {g.title}
+                  </div>
                   <div className="text-xs text-white/75">{g.place}</div>
                 </figcaption>
               </figure>
@@ -1339,7 +1429,6 @@ function Landing() {
       <Partners />
       <WhyUs />
 
-
       <CTA />
       <Footer />
       <MobileActions />
@@ -1347,5 +1436,3 @@ function Landing() {
     </main>
   );
 }
-
-
